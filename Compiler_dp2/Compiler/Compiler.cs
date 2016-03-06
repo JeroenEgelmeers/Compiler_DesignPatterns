@@ -22,5 +22,10 @@ namespace Compiler_dp2.Compiler
             }
             return null;
         }
+
+        public virtual bool isMatch(Token currentToken)
+        {
+            return false;
+        }
     }
 }

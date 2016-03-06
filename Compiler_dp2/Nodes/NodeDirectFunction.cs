@@ -4,12 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Compiler_dp2.Nodes.Visitors;
+using Compiler_dp2.Tokenizer;
 
 namespace Compiler_dp2.Nodes
 {
     class NodeDirectFunction : NodeAbstractFunction
     {
         private string[] toCompile;
+
+        public NodeDirectFunction(string kind, Token token)
+        {
+            toCompile[toCompile.Length + 1] = kind;
+            toCompile[toCompile.Length + 1] = token;
+        }
 
         public void setStringArray(int arraySize)
         {

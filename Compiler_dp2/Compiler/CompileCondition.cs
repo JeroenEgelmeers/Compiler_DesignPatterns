@@ -29,11 +29,47 @@ namespace Compiler_dp2.Compiler
 
         public override Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)
         {
-            string supportedTokenString;
-            int level = currentToken.level;
-            
+            //string supportedTokenString;
+            //int level = currentToken.level;
 
-            return currentToken;
+            var first = currentToken;
+            var second = currentToken.nextToken;
+            var third = second.nextToken;
+
+            string leftVarName = first.value;
+            string rightVarName = third.value;
+
+            Node current = before;
+
+            // numbers omzetten naar identifiers
+            if (first.tokenType != TokenType.Identifier)
+            {
+                current = current.setNext(new NodeDirectFunction("ConstantToReturn", first));
+                leftVarName = "$001";
+                current = current.setNext(new NodeDirectFunction("ReturnToVariable", leftVarName));
+            }
+            if (third.tokenType != TokenType.Identifier)
+            {
+                current = current.setNext(new NodeDirectFunction("ConstantToReturn", third));
+                leftVarName = "$002";
+                current = current.setNext(new NodeDirectFunction("ReturnToVariable", rightVarName));
+            }
+
+            // zet een bereking klaar
+            current = current.setNext(new NodeFunction("AreEqual", leftVarName, rightVarName));
+
+            return third.nextToken;
+        }
+
+        public override bool isMatch(Token currentToken)
+        {
+            var first = currentToken;
+            var second = currentToken.nextToken;
+            var third = second.nextToken;
+
+            return second.tokenType == TokenType.EqualsEquals &&
+                   (first.tokenType == TokenType.Number || first.tokenType == TokenType.Identifier) &&
+                   (third.tokenType == TokenType.Number || third.tokenType == TokenType.Identifier);
         }
     }
 }

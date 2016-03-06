@@ -83,5 +83,10 @@ namespace Compiler_dp2.Compiler
 
             return currentToken;
         }
+
+        public override bool isMatch(Token currentToken)
+        {
+            return currentToken.tokenType == TokenType.IfStatement && currentToken.partner == null;
+        }
     }
 }

@@ -17,5 +17,11 @@ namespace Compiler_dp2.Compiler
 
             return null;
         }
+
+        public override bool isMatch(Token currentToken)
+        {
+            // TODO
+            return true;
+        }
     }
 }
