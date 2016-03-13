@@ -201,7 +201,12 @@ namespace Compiler_dp2.Tokenizer
             if (_pushTokenStack) { pushTokenStack(newToken); _pushTokenStack = false; }
             else if(_popTokenStack) { popTokenStack(newToken); _popTokenStack = false; }
 
-            if (lastToken != null && lastToken.nextToken != null) { lastToken.nextToken = newToken; }
+            if (lastToken != null && lastToken.nextToken == null) 
+            { 
+                lastToken.nextToken = newToken; 
+            }
+
+            lastToken = newToken;
         }
     }
 }
