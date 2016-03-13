@@ -11,7 +11,9 @@ namespace Compiler_dp2.Nodes
         private Node next;
 
         public Node getNext() { return next; }
-        public void setNext(Node node) { next = node; }
+        public Node setNext(Node node) { next = node;
+            return this; 
+        }
         public bool hasNext() { return (next != null); }
 
         public abstract string nodeKind(); // return a string for program results

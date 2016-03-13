@@ -14,8 +14,13 @@ namespace Compiler_dp2.Nodes
 
         public NodeDirectFunction(string kind, Token token)
         {
-            toCompile[toCompile.Length + 1] = kind;
-            toCompile[toCompile.Length + 1] = token;
+            //toCompile[toCompile.Length + 1] = kind;
+            //toCompile[toCompile.Length + 1] = token;
+        }
+
+        public NodeDirectFunction(string kind, string value)
+        {
+            
         }
 
         public void setStringArray(int arraySize)

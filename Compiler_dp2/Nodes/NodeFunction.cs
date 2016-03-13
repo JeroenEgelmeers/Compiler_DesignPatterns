@@ -13,6 +13,11 @@ namespace Compiler_dp2.Nodes
     {
         private string[] toCompile;
 
+        public NodeFunction(string kind, string left, string right)
+        {
+
+        }
+
         public void setStringArray(int arraySize)
         {
             if (arraySize > 0) { toCompile = new string[arraySize]; }
