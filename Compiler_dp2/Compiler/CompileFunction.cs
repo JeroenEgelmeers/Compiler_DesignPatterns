@@ -20,8 +20,11 @@ namespace Compiler_dp2.Compiler
 
         public override bool isMatch(Token currentToken)
         {
-            // TODO
-            return true;
+        //    if (currentToken.tokenType == TokenType.Identifier)
+        //    {
+        //        return true;
+        //    }
+            return false;
         }
     }
 }
