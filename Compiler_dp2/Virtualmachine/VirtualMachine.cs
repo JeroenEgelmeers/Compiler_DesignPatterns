@@ -30,7 +30,7 @@ namespace Compiler_dp2.Virtualmachine
 
             while(currentNode != null)
             {
-                // Do smoething with the current node
+                // Do something with the current node
                 NodeAbstractFunction aNode = currentNode as NodeAbstractFunction;
                 if (aNode != null)
                 {

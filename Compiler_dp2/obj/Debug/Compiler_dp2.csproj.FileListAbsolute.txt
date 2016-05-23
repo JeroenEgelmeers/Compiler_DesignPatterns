@@ -10,3 +10,9 @@ C:\Users\jeroe\Documents\Visual Studio 2015\Projects\Compiler_dp2_git\Compiler_d
 C:\Users\jeroe\Documents\Visual Studio 2015\Projects\Compiler_dp2_git\Compiler_dp2\bin\Debug\Compiler_dp2.exe
 C:\Users\jeroe\Documents\Visual Studio 2015\Projects\Compiler_dp2_git\Compiler_dp2\bin\Debug\Compiler_dp2.pdb
 C:\Users\jeroe\Documents\Visual Studio 2015\Projects\Compiler_dp2_git\Compiler_dp2\obj\Debug\Compiler_dp2.csprojResolveAssemblyReference.cache
+C:\Users\LeonLgame\Documents\Compiler_dp2\Compiler_dp2\bin\Debug\Compiler_dp2.exe.config
+C:\Users\LeonLgame\Documents\Compiler_dp2\Compiler_dp2\obj\Debug\Compiler_dp2.exe
+C:\Users\LeonLgame\Documents\Compiler_dp2\Compiler_dp2\obj\Debug\Compiler_dp2.pdb
+C:\Users\LeonLgame\Documents\Compiler_dp2\Compiler_dp2\bin\Debug\Compiler_dp2.exe
+C:\Users\LeonLgame\Documents\Compiler_dp2\Compiler_dp2\bin\Debug\Compiler_dp2.pdb
+C:\Users\LeonLgame\Documents\Compiler_dp2\Compiler_dp2\obj\Debug\Compiler_dp2.csprojResolveAssemblyReference.cache

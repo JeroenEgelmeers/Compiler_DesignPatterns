@@ -74,7 +74,7 @@ namespace Compiler_dp2.Tokenizer
                             case '\n': // enter
                             case ' ':
                                 text = getTextType(text, currentLevel, currentLine, positionInRule);
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.String, currentChar.ToString());
+                               // addToken(currentLevel, currentLine, positionInRule, TokenType.String, currentChar.ToString());
                                 break;
                             case '(':
                                 text = getTextType(text, currentLevel, currentLine, positionInRule);
@@ -106,7 +106,7 @@ namespace Compiler_dp2.Tokenizer
                                 break;
                             case '"':
                                 generateString = true;
-                                break;
+                                break;                          
                             default:
                                 text += currentChar;
                                 break;
@@ -178,10 +178,10 @@ namespace Compiler_dp2.Tokenizer
                 else if (text == "while") { type = TokenType.While; }
                 else if (text == "=") { type = TokenType.Equals; }
                 else if (text == "==") { type = TokenType.EqualsEquals; }
-                else if (text == "write") { type = TokenType.Identifier; }
+                else if (text == "write") { type = TokenType.Function; }
                 else if (int.TryParse(text, out n)) { type = TokenType.Number; }
                 else if (generateString) { type = TokenType.String; generateString = false; }
-                else { type = TokenType.Function ; }
+                else { type = TokenType.Identifier ; }
                 addToken(currentLevel, currentLine, positionInRule, type, text);
             }
               text = ""; // text is saved, so can be cleaned

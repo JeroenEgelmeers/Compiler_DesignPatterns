@@ -13,34 +13,21 @@ namespace Compiler_dp2
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Starting tokenizer...");
-            Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer("E:/Documenten/Avans/semester - open/Semester 7/Blok 1/Design Patterns/week 2/testScript.txt");
-            Token firstToken = tokenizer.getFirstToken();
+            Console.WriteLine("Starting tokenizer...");           
+            Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer("C:/testScript.txt");            
             Console.WriteLine("Finished tokenizer...\n");
 
             Console.WriteLine("Starting compiler...");
             Compiler.Compiler compiler = new Compiler.Compiler();
-            NodeLinkedList nodeLinkedList = new NodeLinkedList();
-            compiler.compile(firstToken, null, nodeLinkedList, null);
-
-            // Get first node after compiled
-            Node node = nodeLinkedList.getFirst();
-
-            while (node != null)
-            {
-                Console.WriteLine(node.nodeKind());
-                node = node.getNext();
-            }
-            
+            NodeLinkedList nodeLinkedList = compiler.compile(tokenizer.tokens);                    
             Console.WriteLine("Finished compiler...\n");
+            
+            Console.WriteLine("Starting virtual machine...");
+            Virtualmachine.VirtualMachine.getInstance().Run(nodeLinkedList);          
+            Console.WriteLine("Finished virtual machine...\n");
 
-            Console.WriteLine("Starting virtual macine...");
-            // # Virtual machine
-            Console.WriteLine("Finished virtual macine...\n");
-            // Keep it alive..
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit.");
+            System.Console.ReadKey();
         }
-
-
     }
 }

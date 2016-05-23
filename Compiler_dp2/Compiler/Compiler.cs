@@ -12,12 +12,28 @@ namespace Compiler_dp2.Compiler
     {
         protected NodeLinkedList compiledNodes;
 
-        public Compiler() { compiledNodes = new NodeLinkedList(); }
+        public Compiler()
+        {
+            compiledNodes = new NodeLinkedList();
+        }
 
+        //Initial compile method
+        public NodeLinkedList compile(List<Token> tokens)
+        {
+            Token nextToken = tokens.First();
+            while (nextToken != null)
+            {
+                Compiler compilerType = CompilerFactory.getInstance().getCompiler(nextToken);
+                nextToken = compilerType.compile(nextToken, null, compiledNodes, null);
+            }
+            return compiledNodes;
+        }
+
+        //sub compile method
         public virtual Token compile(Token currentToken, Token endToken, NodeLinkedList nodeList, Node before)
         {
-            while (currentToken != null) {
-               // Console.WriteLine("{0}, {1}: {2}", currentToken.ruleNumber, currentToken.positionInRule, currentToken.value); // fix door Martijn
+            while (currentToken != null)
+            {
                 currentToken = CompilerFactory.getInstance().getCompiler(currentToken).compile(currentToken, endToken, nodeList, before);
             }
             return null;
