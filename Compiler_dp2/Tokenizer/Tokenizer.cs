@@ -74,7 +74,7 @@ namespace Compiler_dp2.Tokenizer
                             case '\n': // enter
                             case ' ':
                                 text = getTextType(text, currentLevel, currentLine, positionInRow);
-                               // addToken(currentLevel, currentLine, positionInRow, TokenType.String, currentChar.ToString());
+                               // uitgecomment dit horen geen tokens te zijn. addToken(currentLevel, currentLine, positionInRow, TokenType.String, currentChar.ToString());
                                 break;
                             case '(':
                                 text = getTextType(text, currentLevel, currentLine, positionInRow);
@@ -114,10 +114,10 @@ namespace Compiler_dp2.Tokenizer
                     }
                 }
             }
-
+            
             if (tokenStack.Count != 0)
-            {
-                // Stack not empty exception
+            {                
+                // Stack not empty exception                
                 throw new Exception_StackNotEmpty("#TZ0001 :: The stack should be empty on execute. You did not manage " + tokenStack.Count + " items.");
             }
 
