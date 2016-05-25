@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compiler\Compiletypes\CompileAssignment.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileConstant.cs" />
     <Compile Include="Virtualmachine\Commands\Plus.cs" />
     <Compile Include="Virtualmachine\Commands\ReturnToVariable.cs" />
     <Compile Include="Compiler\Compiletypes\CompileCondition.cs" />

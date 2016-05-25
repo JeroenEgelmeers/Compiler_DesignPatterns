@@ -9,7 +9,7 @@ namespace Compiler_dp2.Tokenizer
     public class Token
     {
         public int ruleNumber { get; set; } // Regel nummer
-        public int positionInRule { get; set; } // Positie in regel (characther 3)
+        public int positionInRow { get; set; } // Positie in regel (characther 3)
         public string value { get; set; } // Waarde
         public TokenType tokenType { get; set; } // Tokentype uit TokenType.cs
         public int level { get; set; } // ( level++, ) level--

@@ -16,8 +16,13 @@ namespace Compiler_dp2.Nodes
         }
         public bool hasNext() { return (next != null); }
 
-        public abstract string nodeKind(); // return a string for program results
+        public abstract string nodeType(); // return a string for program results
 
         public abstract void accept(Visitors.NodeVisistor.NodeVisitor visitor);
+
+        public void writeLineNode()
+        {
+            Console.WriteLine("Node: " + nodeType());
+        }
     }
 }

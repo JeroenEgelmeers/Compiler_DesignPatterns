@@ -11,29 +11,27 @@ namespace Compiler_dp2.Nodes
 {
     class NodeFunction : NodeAbstractFunction
     {
-        private string[] toCompile;
-
-        public NodeFunction(string kind, string left, string right)
+        public NodeFunction(string type, string left, string right)
         {
-
+            parameters = new string[3] { type, left, right };
         }
 
         public void setStringArray(int arraySize)
         {
-            if (arraySize > 0) { toCompile = new string[arraySize]; }
-            else { toCompile = null; }
+            if (arraySize > 0) { parameters = new string[arraySize]; }
+            else { parameters = null; }
         }
 
-        public void         setAt(int index, string text)   { toCompile[index] = text;  }
-        public string       getAt(int index)                { return toCompile[index];  }
-        public string[]     getToCompile()                  { return toCompile;         }
+        public void         setAt(int index, string text)   { parameters[index] = text;  }
+        public string       getAt(int index)                { return parameters[index];  }
+        public string[]     getToCompile()                  { return parameters;         }
 
         public override void accept(NodeVisistor.NodeVisitor visitor) { visitor.visit(this); }
-        public override string nodeKind()
+        public override string nodeType()
         {
             string returnContent = "Function: ";
 
-            foreach (string c in toCompile) { returnContent += c; }
+            foreach (string c in parameters) { returnContent += c; }
 
             return returnContent;
         }

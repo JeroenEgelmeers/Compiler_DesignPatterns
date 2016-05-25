@@ -26,10 +26,21 @@ namespace Compiler_dp2.Compiler
                 Compiler compilerType = CompilerFactory.getInstance().getCompiler(nextToken);
                 nextToken = compilerType.compile(nextToken, null, compiledNodes, null);
             }
-            return compiledNodes;
+            print();
+            return compiledNodes;            
         }
 
-        //sub compile method
+        private void print()
+        {
+            Node currentNode = compiledNodes.getFirst();
+            while(currentNode != null)
+            {
+                currentNode.writeLineNode();
+                currentNode = currentNode.getNext();
+            }
+        }
+
+        //sub compile method OLD
         public virtual Token compile(Token currentToken, Token endToken, NodeLinkedList nodeList, Node before)
         {
             while (currentToken != null)

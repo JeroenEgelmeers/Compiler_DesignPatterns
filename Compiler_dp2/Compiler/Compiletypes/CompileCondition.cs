@@ -19,7 +19,7 @@ namespace Compiler_dp2.Compiler
 
         public CompileCondition()
         {
-            // Add conditions that you want to support
+            //TODO Add conditions that you want to support
             supportedTokens = new Dictionary<TokenType, string>();
             supportedTokens.Add(TokenType.EqualsEquals, "Equals");
             //? supportedTokens.Add(TokenType.Function, "Write");
@@ -44,18 +44,19 @@ namespace Compiler_dp2.Compiler
             // numbers omzetten naar identifiers
             if (first.tokenType != TokenType.Identifier)
             {
-                current = current.setNext(new NodeDirectFunction("ConstantToReturn", first));
+                current = current.setNext(new NodeDirectFunction("ConstantToReturn", first.value));
                 leftVarName = "$001";
                 current = current.setNext(new NodeDirectFunction("ReturnToVariable", leftVarName));
             }
             if (third.tokenType != TokenType.Identifier)
             {
-                current = current.setNext(new NodeDirectFunction("ConstantToReturn", third));
+                current = current.setNext(new NodeDirectFunction("ConstantToReturn", third.value));
                 leftVarName = "$002";
                 current = current.setNext(new NodeDirectFunction("ReturnToVariable", rightVarName));
             }
 
-            // zet een bereking klaar
+            //Zet een berekening klaar
+            //TODO "AreEqual is hardcoded" '!=' elke middelste token zal als 'AreEqual beschouwt worden'
             current = current.setNext(new NodeFunction("AreEqual", leftVarName, rightVarName));
 
             return third.nextToken;

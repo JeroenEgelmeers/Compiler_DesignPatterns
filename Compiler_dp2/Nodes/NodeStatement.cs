@@ -15,6 +15,6 @@ namespace Compiler_dp2.Nodes
             visitor.visit(this);
         }
 
-        public override string nodeKind() { return "Statement Node"; }
+        public override string nodeType() { return "Statement Node"; }
     }
 }

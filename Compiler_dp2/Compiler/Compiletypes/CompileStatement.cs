@@ -11,19 +11,19 @@ namespace Compiler_dp2.Compiler
     class CompileStatement : Compiler
     {
         
-        public override  Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)
+        public override Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)
         {
-
-            int level = currentToken.level;
-            
+            int level = currentToken.level;            
 
             List<TokenExpected> excepted = new List<TokenExpected>();
-            excepted.Add(new TokenExpected(level, TokenType.Identifier));
-            excepted.Add(new TokenExpected(level, TokenType.ANY)); // What should this be?
-            excepted.Add(new TokenExpected(level, TokenType.ANY));
+            excepted.Add(new TokenExpected(level, TokenType.Identifier)); //left hand value
+            excepted.Add(new TokenExpected(level, TokenType.ANY)); // Operators
+            excepted.Add(new TokenExpected(level, TokenType.ANY)); // right hand value
 
+            
             foreach (TokenExpected expt in excepted)
             {
+                //TODO
 
             }
 
@@ -32,7 +32,8 @@ namespace Compiler_dp2.Compiler
 
         public override bool isMatch(Token currentToken)
         {
-            if (currentToken.tokenType == TokenType.Identifier)
+            //TODO tweede if condition aanpassen
+            if (currentToken.tokenType == TokenType.Identifier && currentToken.tokenType != TokenType.Identifier)
             {
                 return true;
             }
