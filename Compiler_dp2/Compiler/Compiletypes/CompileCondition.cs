@@ -44,20 +44,20 @@ namespace Compiler_dp2.Compiler
             // numbers omzetten naar identifiers
             if (first.tokenType != TokenType.Identifier)
             {
-                current = current.setNext(new NodeDirectFunction("ConstantToReturn", first.value));
+                current = current.insertPrevious(new NodeDirectFunction("ConstantToReturn", first.value));
                 leftVarName = "$001";
-                current = current.setNext(new NodeDirectFunction("ReturnToVariable", leftVarName));
+                current = current.insertPrevious(new NodeDirectFunction("ReturnToVariable", leftVarName));
             }
             if (third.tokenType != TokenType.Identifier)
             {
-                current = current.setNext(new NodeDirectFunction("ConstantToReturn", third.value));
-                leftVarName = "$002";
-                current = current.setNext(new NodeDirectFunction("ReturnToVariable", rightVarName));
+                current = current.insertPrevious(new NodeDirectFunction("ConstantToReturn", third.value));
+                rightVarName = "$002";
+                current = current.insertPrevious(new NodeDirectFunction("ReturnToVariable", rightVarName));
             }
 
             //Zet een berekening klaar
             //TODO "AreEqual is hardcoded" '!=' elke middelste token zal als 'AreEqual beschouwt worden'
-            current = current.setNext(new NodeFunction("AreEqual", leftVarName, rightVarName));
+            current = current.insertPrevious(new NodeFunction("AreEqual", leftVarName, rightVarName));
 
             return third.nextToken;
         }

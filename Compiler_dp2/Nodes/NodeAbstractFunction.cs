@@ -14,5 +14,6 @@ namespace Compiler_dp2.Nodes
         public override void accept(NodeVisistor.NodeVisitor visitor) { }
 
         public override string nodeType() { return "Abstract Function"; }
+        
     }
 }

@@ -31,7 +31,7 @@ namespace Compiler_dp2.Nodes
         {
             string returnContent = "Function: ";
 
-            foreach (string c in parameters) { returnContent += c; }
+            returnContent += String.Join(", ", parameters);
 
             return returnContent;
         }
