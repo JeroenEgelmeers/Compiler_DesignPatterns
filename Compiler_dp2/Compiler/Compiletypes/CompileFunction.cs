@@ -13,9 +13,19 @@ namespace Compiler_dp2.Compiler
 
         public override Token compile(Token currentToken, Token endToken, NodeLinkedList nodeList, Node before)
         {
-            // No clue..
+            Node current = before;
+            Token first = currentToken;
+            Token second = currentToken.nextToken.nextToken;
+            string value = second.value;
+            string varName;
 
-            return null;
+            current = current.insertPrevious(new NodeDirectFunction("ConstantToReturn", value));
+            varName = Guid.NewGuid().ToString("N");
+            current = current.insertPrevious(new NodeDirectFunction("ReturnToVariable", varName));
+
+            current = current.insertPrevious(new NodeFunction("write", varName));
+
+            return second.nextToken.nextToken.nextToken;
         }
 
         public override bool isMatch(Token currentToken)

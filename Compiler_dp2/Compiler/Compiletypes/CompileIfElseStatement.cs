@@ -112,7 +112,6 @@ namespace Compiler_dp2.Compiler
                     }
                 }
             }
-
             return currentToken;
         }        
 

@@ -6,11 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-///  UPDATED!!!!
-/// </summary>
-
-
 namespace Compiler_dp2.Compiler
 {
     class CompileCondition : Compiler
@@ -45,13 +40,13 @@ namespace Compiler_dp2.Compiler
             if (first.tokenType != TokenType.Identifier)
             {
                 current = current.insertPrevious(new NodeDirectFunction("ConstantToReturn", first.value));
-                leftVarName = "$001";
+                leftVarName = Guid.NewGuid().ToString("N");
                 current = current.insertPrevious(new NodeDirectFunction("ReturnToVariable", leftVarName));
             }
             if (third.tokenType != TokenType.Identifier)
             {
                 current = current.insertPrevious(new NodeDirectFunction("ConstantToReturn", third.value));
-                rightVarName = "$002";
+                rightVarName = Guid.NewGuid().ToString("N");
                 current = current.insertPrevious(new NodeDirectFunction("ReturnToVariable", rightVarName));
             }
 

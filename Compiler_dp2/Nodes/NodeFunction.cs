@@ -16,6 +16,11 @@ namespace Compiler_dp2.Nodes
             parameters = new string[3] { type, left, right };
         }
 
+        public NodeFunction(string type, string var)
+        {
+            parameters = new string[2] { type, var };
+        }
+
         public void setStringArray(int arraySize)
         {
             if (arraySize > 0) { parameters = new string[arraySize]; }
