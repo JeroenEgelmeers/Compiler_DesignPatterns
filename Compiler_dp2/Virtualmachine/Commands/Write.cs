@@ -11,7 +11,8 @@ namespace Compiler_dp2.Compiler.Commands
     {
         public override void execute(VirtualMachine vm, IList<string> parameters)
         {
-            throw new NotImplementedException();
+            string joinedString = string.Join(",", parameters);
+            Console.WriteLine(joinedString);
         }
     }
 }
