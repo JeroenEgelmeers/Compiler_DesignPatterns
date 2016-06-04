@@ -115,11 +115,11 @@ namespace Compiler_dp2.Tokenizer
                 }
             }
             
-            if (tokenStack.Count != 0)
-            {                
-                // Stack not empty exception                
-                throw new Exception_StackNotEmpty("#TZ0001 :: The stack should be empty on execute. You did not manage " + tokenStack.Count + " items.");
-            }
+            //if (tokenStack.Count != 0)
+            //{                
+            //    // Stack not empty exception                
+            //    throw new Exception_StackNotEmpty("#TZ0001 :: The stack should be empty on execute. You did not manage " + tokenStack.Count + " items.");
+            //}
 
             // Show tokenizer output
             print();            

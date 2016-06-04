@@ -113,11 +113,14 @@ namespace Compiler_dp2.Compiler
                 }
             }
             return currentToken;
-        }        
+        }
 
         public override bool isMatch(Token currentToken)
         {
-            return currentToken.tokenType == TokenType.IfStatement && currentToken.partner.tokenType == TokenType.ElseStatement;
+            bool match = false;
+            if (currentToken.partner != null)
+                match = currentToken.tokenType == TokenType.IfStatement && currentToken.partner.tokenType == TokenType.ElseStatement;
+            return match;
         }
     }
 }

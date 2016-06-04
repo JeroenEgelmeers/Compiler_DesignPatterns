@@ -26,7 +26,8 @@ namespace Compiler_dp2.Compiler
                 Compiler compilerType = CompilerFactory.getInstance().getCompiler(nextToken);
                 nextToken = compilerType.compile(nextToken, null, compiledNodes, null);
                 Console.WriteLine(compiledNodes);
-            }            
+            }
+            print();          
             return compiledNodes;            
         }
 
