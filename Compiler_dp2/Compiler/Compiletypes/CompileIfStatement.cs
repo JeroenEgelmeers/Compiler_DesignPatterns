@@ -58,12 +58,20 @@ namespace Compiler_dp2.Compiler
                     {
                         if (expt.tokenType != currentToken.tokenType)
                         {
-                            if (expt.tokenType == TokenType.BracketsOpen || (expt.tokenType == TokenType.BracketsClose && openedBracket))
+                            if (expt.tokenType == TokenType.BracketsOpen ||
+                            (expt.tokenType == TokenType.BracketsClose && openedBracket))
                             {
-                                openedBracket = true;
+                                openedBracket = false;
                             }
-                            else { throw new Exception_UnexpectedEnd("#CP0001 :: Unexpected end of statement."); }
+                            else
+                            {
+                                throw new Exception_UnexpectedEnd("#CP0001 :: Unexpected end of statement.");
+                            }
                         }
+                    }
+                    else
+                    {
+                        currentToken = currentToken.nextToken;
                     }
                 }
                 else if (expt.level >= level)

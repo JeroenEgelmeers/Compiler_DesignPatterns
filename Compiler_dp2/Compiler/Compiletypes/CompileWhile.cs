@@ -61,11 +61,11 @@ namespace Compiler_dp2.Compiler
                 {
                     if (currentToken.tokenType != expt.tokenType)
                     {
-                        if (expt.tokenType != currentToken.tokenType) //TODO vraag waar is dit voor ? hoort de token niet altijd expected te zijn ?
+                        if (expt.tokenType != currentToken.tokenType)
                         {
-                            if (expt.tokenType == TokenType.BracketsOpen || (expt.tokenType == TokenType.BracketsClose && openedBracket))
+                            if (expt.tokenType == TokenType.BracketsOpen || (expt.tokenType == TokenType.BracketsClose && !openedBracket))
                             {
-                                openedBracket = true;
+                                openedBracket = false;
                             }else { throw new Exception_UnexpectedEnd("#CP0001 :: Unexpected end of statement."); }
                         }
                     }
