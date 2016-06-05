@@ -28,8 +28,10 @@ namespace Compiler_dp2.Compiler
             compiledNodes.addLast(new NodeDoNothing());
             compiledNodes.addLast(new NodeDoNothing());
 
-            conditionalJump.nextOntrue = trueNodeDoNothing;
-            conditionalJump.nextOnFalse = falseNodeDoNothing;
+            compiledNodes.addLast(firstNodeDoNothing);
+            compiledNodes.addLast(conditionalJump);
+            compiledNodes.addLast(trueNodeDoNothing);
+            compiledNodes.addLast(falseNodeDoNothing);
         }
 
         public override Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)

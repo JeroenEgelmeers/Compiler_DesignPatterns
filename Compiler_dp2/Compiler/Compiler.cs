@@ -25,7 +25,7 @@ namespace Compiler_dp2.Compiler
             {
                 Compiler compilerType = CompilerFactory.getInstance().getCompiler(nextToken);
                 nextToken = compilerType.compile(nextToken, null, compiledNodes, null);
-                Console.WriteLine(compiledNodes);
+                //Console.WriteLine(compiledNodes); // Gets already printed in the methods. So not needed here anymore.
             }
             print();          
             return compiledNodes;            
