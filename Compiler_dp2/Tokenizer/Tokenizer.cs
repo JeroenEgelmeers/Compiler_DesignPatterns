@@ -114,12 +114,6 @@ namespace Compiler_dp2.Tokenizer
                     }
                 }
             }
-            
-            //if (tokenStack.Count != 0)
-            //{                
-            //    // Stack not empty exception                
-            //    throw new Exception_StackNotEmpty("#TZ0001 :: The stack should be empty on execute. You did not manage " + tokenStack.Count + " items.");
-            //}
 
             // Show tokenizer output
             print();            
@@ -178,15 +172,21 @@ namespace Compiler_dp2.Tokenizer
             {
                 TokenType type;
                 int n;
+
                 if (text == "if") { type = TokenType.IfStatement; _pushTokenStack = true; }
                 else if (text == "else") { type = TokenType.ElseStatement; _popTokenStack = true; }
                 else if (text == "while") { type = TokenType.While; }
                 else if (text == "=") { type = TokenType.Equals; }
+                else if (text == "+") { type = TokenType.Plus; }
                 else if (text == "==") { type = TokenType.EqualsEquals; }
+                else if (text == "!=") { type = TokenType.NotEquals; }
+                else if (text == ">=") { type = TokenType.GreaterEquals; }
+                else if (text == "<=") { type = TokenType.LessEquals; }
                 else if (text == "write") { type = TokenType.Function; }
                 else if (int.TryParse(text, out n)) { type = TokenType.Number; }
                 else if (generateString) { type = TokenType.String; generateString = false; }
                 else { type = TokenType.Identifier ; }
+
                 addToken(currentLevel, currentLine, positionInRow, type, text);
             }
               text = ""; // text is saved, so can be cleaned
