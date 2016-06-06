@@ -34,8 +34,7 @@ namespace Compiler_dp2.Compiler
             conditionalJump.nextOnFalse     = compiledNodes.getLast();
 
             // Settings
-            openedBracket                   = false;
-        }
+            openedBracket                   = false;        }
 
         public override Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)
         {
