@@ -15,10 +15,15 @@ namespace Compiler_dp2.Compiler.Compiletypes
             string variableName = currentToken.value; //left hand value
             currentToken = currentToken.nextToken.nextToken;
 
+            Node current = before;           
+
             Compiler rightCompiled = CompilerFactory.getInstance().getCompiler(currentToken); //right hand value
             currentToken = rightCompiled.compile(currentToken, lastToken, nodeLinkedList, before);
 
-            nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", variableName));
+            if (before == null)
+                nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", variableName));
+            else
+                current = current.insertPrevious(new NodeDirectFunction("ReturnToVariable", variableName));
 
             return currentToken.nextToken;
         }

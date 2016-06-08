@@ -12,12 +12,20 @@ namespace Compiler_dp2.Compiler.Compiletypes
     {
         public override Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)
         {
-            nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.value));
-            nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", Guid.NewGuid().ToString("N")));       
-            
+            if (before == null)
+            {
+                nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.value));
+                nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", Guid.NewGuid().ToString("N")));
+            }
+            else
+            {
+                before = before.insertPrevious(new NodeDirectFunction("ConstantToReturn", currentToken.value));
+                before.insertPrevious(new NodeDirectFunction("ReturnToVariable", Guid.NewGuid().ToString("N")));
+            }
+
             return currentToken.nextToken;
         }
-        
+
         public override bool isMatch(Token currentToken)
         {
             //TODO uitbreiden
