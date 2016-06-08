@@ -31,15 +31,15 @@ namespace Compiler_dp2.Compiler
             }
         }
 
-        public Compiler getCompiler (Token t)
+        public Compiler getCompiler(Token t)
         {
             Compiler compilerStrategy = null;
 
             try
             {
-                foreach(Compiler c in compilerClasses)
+                foreach (Compiler c in compilerClasses)
                 {
-                    if(c.isMatch(t))
+                    if (c.isMatch(t))
                     {
                         compilerStrategy = c;
                         break;
@@ -48,9 +48,10 @@ namespace Compiler_dp2.Compiler
                 if (compilerStrategy == null)
                     throw new Exception();
 
-            }catch
+            }
+            catch
             {
-                throw new Exception_FactoryFailed("#CF0001 :: Can't get right compiler." + t.tokenType);
+               throw new Exception_FactoryFailed("#CF0001 :: Can't get right compiler." + t.tokenType);
             }
 
             return compilerStrategy;

@@ -85,7 +85,7 @@ namespace Compiler_dp2.Compiler
                     }
                     else
                     {
-                        while (currentToken.tokenType != TokenType.BracketsClose)
+                        while (currentToken.tokenType != TokenType.BracketsClose && currentToken.tokenType != TokenType.EllipsisClose)
                         {
                             compileStatement = CompilerFactory.getInstance().getCompiler(currentToken);
                             currentToken = compileStatement.compile(currentToken, lastToken, nodeLinkedList, falseNodeDoNothing);

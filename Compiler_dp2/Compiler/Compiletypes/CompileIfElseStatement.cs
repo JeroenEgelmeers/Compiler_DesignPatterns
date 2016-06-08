@@ -102,15 +102,18 @@ namespace Compiler_dp2.Compiler
                     }
                     else if (compileStatement == null)
                     {
-                        compileStatement = CompilerFactory.getInstance().getCompiler(currentToken);
-                        currentToken = compileStatement.compile(currentToken, lastToken, nodeLinkedList, nodeJump);
+                        while (currentToken.tokenType != TokenType.BracketsClose && currentToken.tokenType != TokenType.EllipsisClose)
+                        {
+                            compileStatement = CompilerFactory.getInstance().getCompiler(currentToken);
+                            currentToken = compileStatement.compile(currentToken, lastToken, nodeLinkedList, nodeJump);
+                        }
                     }
                     else
                     {
-                        while (currentToken.tokenType != TokenType.BracketsClose)
+                        while (currentToken.tokenType != TokenType.BracketsClose && currentToken.tokenType != TokenType.EllipsisClose)
                         {
                             Compiler elseCompiler = CompilerFactory.getInstance().getCompiler(currentToken);
-                            currentToken = compileStatement.compile(currentToken, lastToken, nodeLinkedList, nodeDoNothing);
+                            currentToken = elseCompiler.compile(currentToken, lastToken, nodeLinkedList, nodeDoNothing);
                         }
                     }
                 }
