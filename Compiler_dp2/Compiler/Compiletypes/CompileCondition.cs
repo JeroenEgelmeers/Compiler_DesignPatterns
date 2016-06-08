@@ -66,14 +66,6 @@ namespace Compiler_dp2.Compiler
 
             return second.tokenType == TokenType.EqualsEquals &&
                    (first.tokenType == TokenType.Number || first.tokenType == TokenType.Identifier) &&
-                   (third.tokenType == TokenType.Number || third.tokenType == TokenType.Identifier) ||
-
-                   second.tokenType == TokenType.Plus &&
-                   (first.tokenType == TokenType.Number || first.tokenType == TokenType.Identifier) && 
-                   (third.tokenType == TokenType.Number || third.tokenType == TokenType.Identifier) ||
-
-                   second.tokenType == TokenType.Equals &&
-                   (first.tokenType == TokenType.Number || first.tokenType == TokenType.Identifier) &&
                    (third.tokenType == TokenType.Number || third.tokenType == TokenType.Identifier);
         }
     }

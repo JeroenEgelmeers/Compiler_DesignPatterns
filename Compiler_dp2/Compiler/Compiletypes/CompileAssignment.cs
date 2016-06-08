@@ -25,11 +25,17 @@ namespace Compiler_dp2.Compiler.Compiletypes
 
         public override bool isMatch(Token currentToken)
         {
-            if (currentToken.tokenType == TokenType.Identifier && currentToken.nextToken.tokenType == TokenType.Equals)
-            {
-                return true;
-            }
-            return false;
+            var first = currentToken;
+            var second = currentToken.nextToken;
+            var third = second.nextToken;
+
+            return second.tokenType == TokenType.Plus &&
+                   (first.tokenType == TokenType.Number || first.tokenType == TokenType.Identifier) &&
+                   (third.tokenType == TokenType.Number || third.tokenType == TokenType.Identifier) ||
+
+                   second.tokenType == TokenType.Equals &&
+                   (first.tokenType == TokenType.Number || first.tokenType == TokenType.Identifier) &&
+                   (third.tokenType == TokenType.Number || third.tokenType == TokenType.Identifier);
         }
     }
 }

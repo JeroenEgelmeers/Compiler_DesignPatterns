@@ -13,7 +13,7 @@ namespace Compiler_dp2.Compiler.Compiletypes
         public override Token compile(Token currentToken, Token lastToken, NodeLinkedList nodeLinkedList, Node before)
         {
             nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.value));
-            nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", Guid.NewGuid().ToString("N")));  //TODO ID random ?         
+            nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", Guid.NewGuid().ToString("N")));       
             
             return currentToken.nextToken;
         }
