@@ -41,7 +41,10 @@ namespace Compiler_dp2.Compiler
         {
             int level = currentToken.level;
 
-            nodeLinkedList.insertBefore(before, firstDoNothingNode);
+            if (before != null)
+                before.insertPrevious(firstDoNothingNode);
+            else
+                nodeLinkedList.insertBefore(before, firstDoNothingNode);
 
             List<TokenExpected> expected = new List<TokenExpected>();
             expected.Add(new TokenExpected(level, TokenType.While));

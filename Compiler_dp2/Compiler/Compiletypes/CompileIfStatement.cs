@@ -10,11 +10,11 @@ namespace Compiler_dp2.Compiler
 {
     class CompileIfStatement : Compiler
     {
-        private CompileCondition        compileCondition; // ook weer een compiler
-        private Compiler                compileStatement; // ook weer een compiler
-        private NodeConditionalJump     conditionalJump;
-        private NodeDoNothing           firstNodeDoNothing, trueNodeDoNothing, falseNodeDoNothing;
-        private bool                    openedBracket; // check if compiling statement
+        private CompileCondition compileCondition; // ook weer een compiler
+        private Compiler compileStatement; // ook weer een compiler
+        private NodeConditionalJump conditionalJump;
+        private NodeDoNothing firstNodeDoNothing, trueNodeDoNothing, falseNodeDoNothing;
+        private bool openedBracket; // check if compiling statement
 
         public CompileIfStatement() : base()
         {
@@ -38,15 +38,18 @@ namespace Compiler_dp2.Compiler
         {
             int level = currentToken.level;
 
-            nodeLinkedList.insertBefore(before, firstNodeDoNothing);
+            if (before != null)
+                before.insertPrevious(firstNodeDoNothing);
+            else
+                nodeLinkedList.insertBefore(before, firstNodeDoNothing);
 
             List<TokenExpected> expected = new List<TokenExpected>();
             expected.Add(new TokenExpected(level, TokenType.IfStatement));
             expected.Add(new TokenExpected(level, TokenType.EllipsisOpen));
-                expected.Add(new TokenExpected(level + 1, TokenType.ANY));
+            expected.Add(new TokenExpected(level + 1, TokenType.ANY));
             expected.Add(new TokenExpected(level, TokenType.EllipsisClose));
             expected.Add(new TokenExpected(level, TokenType.BracketsOpen));
-                expected.Add(new TokenExpected(level + 1, TokenType.ANY));
+            expected.Add(new TokenExpected(level + 1, TokenType.ANY));
             expected.Add(new TokenExpected(level, TokenType.BracketsClose));
 
             foreach (TokenExpected expt in expected)
