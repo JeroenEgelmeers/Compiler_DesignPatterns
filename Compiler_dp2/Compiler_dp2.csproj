@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Compiler\Compiletypes\CompileAssignment.cs" />
     <Compile Include="Compiler\Compiletypes\CompileConstant.cs" />
+    <Compile Include="Tokenizer\Exceptions\Exception_NoFileFound.cs" />
     <Compile Include="Virtualmachine\Commands\Plus.cs" />
     <Compile Include="Virtualmachine\Commands\ReturnToVariable.cs" />
     <Compile Include="Compiler\Compiletypes\CompileCondition.cs" />
@@ -52,7 +53,6 @@
     <Compile Include="Compiler\Compiletypes\CompileIfElseStatement.cs" />
     <Compile Include="Compiler\Compiletypes\CompileIfStatement.cs" />
     <Compile Include="Compiler\Compiler.cs" />
-    <Compile Include="Compiler\Compiletypes\CompileStatement.cs" />
     <Compile Include="Virtualmachine\Commands\Equals.cs" />
     <Compile Include="Virtualmachine\Commands\BaseCommand.cs" />
     <Compile Include="Virtualmachine\Commands\Write.cs" />
@@ -87,6 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Nodes\Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Code\testScript1.txt" />
+    <Content Include="Code\testScript3.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,6 @@
+x = 4;
+if (x == 0) {
+write("test 1");
+}else {
+write("test");
+}

@@ -18,7 +18,14 @@ namespace Compiler_dp2.Tokenizer
 
         public Tokenizer(string file)
         {
-           script = System.IO.File.ReadAllLines(@file);
+            try
+            {
+                script = System.IO.File.ReadAllLines(@file);
+            }
+            catch(Exception e)
+            {
+                throw new Exception_NoFileFound();
+            }
            //Console.WriteLine("Amount of lines to parse:" + script.Length); // Can be removed later.
 
             tokens          = new List<Token>();
