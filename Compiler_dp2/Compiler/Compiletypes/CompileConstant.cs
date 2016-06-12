@@ -41,7 +41,7 @@ namespace Compiler_dp2.Compiler
                         {
                             varName = currentToken.value.ToString();
                         }
-                        else if (expt.tokenType == TokenType.ANY)
+                        if (expt.tokenType == TokenType.ANY)
                         {
                             if (currentToken.nextToken.tokenType == TokenType.Plus)
                             {
