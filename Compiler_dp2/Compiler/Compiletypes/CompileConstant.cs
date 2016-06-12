@@ -48,11 +48,22 @@ namespace Compiler_dp2.Compiler
                                 String f1 = Guid.NewGuid().ToString("N");
                                 String f2 = Guid.NewGuid().ToString("N");
                                 String f3 = Guid.NewGuid().ToString("N");
-                                nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.value));
-                                nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", f1));
-                                nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.nextToken.nextToken.value));
-                                nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", f2));
-                                nodeLinkedList.addLast(new NodeFunction("Plus", f1, f2));
+                                if (before == null)
+                                {
+                                    nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.value));
+                                    nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", f1));
+                                    nodeLinkedList.addLast(new NodeDirectFunction("ConstantToReturn", currentToken.nextToken.nextToken.value));
+                                    nodeLinkedList.addLast(new NodeDirectFunction("ReturnToVariable", f2));
+                                    nodeLinkedList.addLast(new NodeFunction("Plus", f1, f2));
+                                }
+                                else
+                                {
+                                    before.insertPrevious(new NodeDirectFunction("ConstantToReturn", currentToken.value));
+                                    before.insertPrevious(new NodeDirectFunction("ReturnToVariable", f1));
+                                    before.insertPrevious(new NodeDirectFunction("ConstantToReturn", currentToken.nextToken.nextToken.value));
+                                    before.insertPrevious(new NodeDirectFunction("ReturnToVariable", f2));
+                                    before.insertPrevious(new NodeFunction("Plus", f1, f2));
+                                }
 
                                 currentToken = currentToken.nextToken.nextToken;
 
