@@ -14,7 +14,7 @@ namespace Compiler_dp2
         static void Main(string[] args)
         {
             Console.WriteLine("Starting tokenizer...");
-            Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer("C:\\Users\\jeroe\\Documents\\Visual Studio 2015\\Projects\\Compiler_dp2_git\\Compiler_dp2\\Code\\testScript1.txt");            
+            Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer("C:\\testScript.txt");            
             Console.WriteLine("Finished tokenizer...\n");
 
             Console.WriteLine("Starting compiler...");
