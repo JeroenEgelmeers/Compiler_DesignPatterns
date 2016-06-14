@@ -12,13 +12,20 @@ namespace Compiler_dp2.Tokenizer
         private Stack<Token>    tokenStack;
         private Token           lastToken;
         private string[]        script;
-        private int             currentLevel,       currentLine,    positionInRule;
+        private int             currentLevel,       currentLine,    positionInRow;
         private char            currentChar;
         private bool            _pushTokenStack,    _popTokenStack, _errorFound,    generateString;
 
         public Tokenizer(string file)
         {
-           script = System.IO.File.ReadAllLines(@file);
+            try
+            {
+                script = System.IO.File.ReadAllLines(@file);
+            }
+            catch(Exception e)
+            {
+                throw new Exception_NoFileFound();
+            }
            //Console.WriteLine("Amount of lines to parse:" + script.Length); // Can be removed later.
 
             tokens          = new List<Token>();
@@ -42,7 +49,7 @@ namespace Compiler_dp2.Tokenizer
             // Loop through lines
             for (int cLine = 1; cLine <= script.Length; cLine++)
             {
-                positionInRule = 0;
+                positionInRow = 0;
                 currentLine = cLine;
                 strLine = script[cLine - 1];
                 text = "";
@@ -54,7 +61,7 @@ namespace Compiler_dp2.Tokenizer
                 // Loop through each char and put them in the token
                 for (int cPos = 0; cPos < strLine.Length; cPos++)
                 {
-                    positionInRule++;
+                    positionInRow++;
                     // Used switch: it's orders or magnitude quicker than the others here (compared with Dictonary and Hashmap).
                     currentChar = strLine[cPos];
 
@@ -65,7 +72,7 @@ namespace Compiler_dp2.Tokenizer
                             text += currentChar;
                         } else
                         {
-                            text = getTextType(text, currentLevel, currentLine, positionInRule);
+                            text = getTextType(text, currentLevel, currentLine, positionInRow);
                         }
                     }else
                     {
@@ -73,40 +80,40 @@ namespace Compiler_dp2.Tokenizer
                         {
                             case '\n': // enter
                             case ' ':
-                                text = getTextType(text, currentLevel, currentLine, positionInRule);
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.String, currentChar.ToString());
+                                text = getTextType(text, currentLevel, currentLine, positionInRow);
+                               // uitgecomment dit horen geen tokens te zijn. addToken(currentLevel, currentLine, positionInRow, TokenType.String, currentChar.ToString());
                                 break;
                             case '(':
-                                text = getTextType(text, currentLevel, currentLine, positionInRule);
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.EllipsisOpen, currentChar.ToString());
+                                text = getTextType(text, currentLevel, currentLine, positionInRow);
+                                addToken(currentLevel, currentLine, positionInRow, TokenType.EllipsisOpen, currentChar.ToString());
                                 pushTokenStack(tokens.Last());
                                 currentLevel++;
                                 break;
                             case ')':
                                 currentLevel--;
-                                text = getTextType(text, currentLevel, currentLine, positionInRule);
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.EllipsisClose, currentChar.ToString());
+                                text = getTextType(text, currentLevel, currentLine, positionInRow);
+                                addToken(currentLevel, currentLine, positionInRow, TokenType.EllipsisClose, currentChar.ToString());
                                 popTokenStack(tokens.Last());
                                 break;
                             case '{':
                                 text = ""; // can't have something as this won't be able.
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.BracketsOpen, currentChar.ToString());
+                                addToken(currentLevel, currentLine, positionInRow, TokenType.BracketsOpen, currentChar.ToString());
                                 pushTokenStack(tokens.Last());
                                 currentLevel++;
                                 break;
                             case '}':
                                 currentLevel--;
                                 text = ""; // can't have something as this won't be able.
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.BracketsClose, currentChar.ToString());
+                                addToken(currentLevel, currentLine, positionInRow, TokenType.BracketsClose, currentChar.ToString());
                                 popTokenStack(tokens.Last());
                                 break;
                             case ';':
-                                text = getTextType(text, currentLevel, currentLine, positionInRule);
-                                addToken(currentLevel, currentLine, positionInRule, TokenType.Semicolon, currentChar.ToString());
+                                text = getTextType(text, currentLevel, currentLine, positionInRow);
+                                addToken(currentLevel, currentLine, positionInRow, TokenType.Semicolon, currentChar.ToString());
                                 break;
                             case '"':
                                 generateString = true;
-                                break;
+                                break;                          
                             default:
                                 text += currentChar;
                                 break;
@@ -115,13 +122,12 @@ namespace Compiler_dp2.Tokenizer
                 }
             }
 
-            if (tokenStack.Count != 0)
-            {
-                // Stack not empty exception
-                throw new Exception_StackNotEmpty("#TZ0001 :: The stack should be empty on execute. You did not manage " + tokenStack.Count + " items.");
-            }
-
             // Show tokenizer output
+            print();            
+        }
+
+        private void print()
+        {
             foreach (Token t in tokens)
             {
                 t.writeLineToken();
@@ -165,7 +171,7 @@ namespace Compiler_dp2.Tokenizer
             }
         }
 
-        public string getTextType(string text, int currentLevel, int currentLine, int positionInRule)
+        public string getTextType(string text, int currentLevel, int currentLine, int positionInRow)
         {
             text.Trim(); // remove spaces
             _pushTokenStack = false;
@@ -173,26 +179,32 @@ namespace Compiler_dp2.Tokenizer
             {
                 TokenType type;
                 int n;
+
                 if (text == "if") { type = TokenType.IfStatement; _pushTokenStack = true; }
                 else if (text == "else") { type = TokenType.ElseStatement; _popTokenStack = true; }
                 else if (text == "while") { type = TokenType.While; }
                 else if (text == "=") { type = TokenType.Equals; }
+                else if (text == "+") { type = TokenType.Plus; }
                 else if (text == "==") { type = TokenType.EqualsEquals; }
-                else if (text == "write") { type = TokenType.Identifier; }
+                else if (text == "!=") { type = TokenType.NotEquals; }
+                else if (text == ">=") { type = TokenType.GreaterEquals; }
+                else if (text == "<=") { type = TokenType.LessEquals; }
+                else if (text == "write") { type = TokenType.Function; }
                 else if (int.TryParse(text, out n)) { type = TokenType.Number; }
                 else if (generateString) { type = TokenType.String; generateString = false; }
-                else { type = TokenType.Function ; }
-                addToken(currentLevel, currentLine, positionInRule, type, text);
+                else { type = TokenType.Identifier ; }
+
+                addToken(currentLevel, currentLine, positionInRow, type, text);
             }
               text = ""; // text is saved, so can be cleaned
             return text;
         }
 
-        private void addToken(int level, int currentLine, int positionInRule, TokenType tt, String currentChar)
+        private void addToken(int level, int currentLine, int positionInRow, TokenType tt, String currentChar)
         {
             Token newToken = new Token();
             newToken.ruleNumber = currentLine;
-            newToken.positionInRule = positionInRule;
+            newToken.positionInRow = positionInRow;
             newToken.value = currentChar;
             newToken.tokenType = tt; // Not yet used
             newToken.level = level;
@@ -201,7 +213,12 @@ namespace Compiler_dp2.Tokenizer
             if (_pushTokenStack) { pushTokenStack(newToken); _pushTokenStack = false; }
             else if(_popTokenStack) { popTokenStack(newToken); _popTokenStack = false; }
 
-            if (lastToken != null && lastToken.nextToken != null) { lastToken.nextToken = newToken; }
+            if (lastToken != null && lastToken.nextToken == null) 
+            { 
+                lastToken.nextToken = newToken; 
+            }
+
+            lastToken = newToken;
         }
     }
 }

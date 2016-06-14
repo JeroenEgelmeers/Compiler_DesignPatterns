@@ -15,10 +15,13 @@ namespace Compiler_dp2.Tokenizer
         EllipsisOpen,   // (
         Equals,         // =
         EqualsEquals,   // ==
+        NotEquals,      // !=
         Function,       // function (write)
         GreaterEquals,  // >=
+        LessEquals,     // <=
         Identifier,     // x
         IfStatement,    // IF
+        Plus,           // +
         Minus,          // -
         Number,         // 0
         Semicolon,      // ;

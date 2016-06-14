@@ -1,0 +1,8 @@
+*.suo
+Compiler_dp2/bin/Debug/Compiler_dp2.exe
+*.cache
+Compiler_dp2/obj/Debug/Compiler_dp2.exe
+Compiler_dp2/Program.cs
+*.exe
+Compiler_dp2/bin/Debug/Compiler_dp2.pdb
+*.cache

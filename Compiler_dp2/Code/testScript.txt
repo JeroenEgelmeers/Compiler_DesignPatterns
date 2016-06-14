@@ -1,0 +1,5 @@
+if ( 3 == 2 ) {
+write("Hello world");
+} else {
+write("Hello world 2");
+}

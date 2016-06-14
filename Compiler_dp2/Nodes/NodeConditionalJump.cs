@@ -15,7 +15,7 @@ namespace Compiler_dp2.Nodes
 
         public override void accept(NodeVisistor.NodeVisitor visitor) { visitor.visit(this); }
 
-        public override string nodeKind()
+        public override string nodeType()
         {
             return "Conditional Jump Node";
         }

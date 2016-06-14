@@ -9,8 +9,11 @@ namespace Compiler_dp2.Nodes
 {
     class NodeAbstractFunction : Node
     {
+        public string[] parameters;
+
         public override void accept(NodeVisistor.NodeVisitor visitor) { }
 
-        public override string nodeKind() { return "Abstract Function"; }
+        public override string nodeType() { return "Abstract Function"; }
+        
     }
 }

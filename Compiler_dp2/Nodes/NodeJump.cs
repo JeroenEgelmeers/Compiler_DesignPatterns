@@ -16,6 +16,6 @@ namespace Compiler_dp2.Nodes
             visitor.visit(this);
         }
 
-        public override string nodeKind() { return "Jump Node"; }
+        public override string nodeType() { return "Jump Node"; }
     }
 }

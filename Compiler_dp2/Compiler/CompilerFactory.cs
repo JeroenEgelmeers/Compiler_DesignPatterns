@@ -20,30 +20,6 @@ namespace Compiler_dp2.Compiler
             return instance;
         }
 
-        public string getClassName(Token t)
-        {
-            string getClass = null;
-
-            switch (t.tokenType)
-            {
-                case TokenType.While:
-                    getClass = "CompileWhile";
-                break;
-                case TokenType.IfStatement:
-                    if (t.partner != null && t.partner.tokenType == TokenType.ElseStatement) { getClass = "CompileIfElseStatement"; } // dit ok?
-                    else { getClass = "CompileIfStatement"; }
-                break;
-                case TokenType.Identifier:
-                    // TODO?
-                break;
-                default:
-                    // ????
-                break;
-            }
-
-            return getClass;
-        }
-
         private CompilerFactory()
         {
             compilerClasses = new List<Compiler>();
@@ -55,23 +31,27 @@ namespace Compiler_dp2.Compiler
             }
         }
 
-        public Compiler getCompiler (Token t)
+        public Compiler getCompiler(Token t)
         {
             Compiler compilerStrategy = null;
 
             try
             {
-                foreach(Compiler c in compilerClasses)
+                foreach (Compiler c in compilerClasses)
                 {
-                    if (c.GetType().Name == getClassName(t))
+                    if (c.isMatch(t))
                     {
                         compilerStrategy = c;
+                        break;
                     }
                 }
+                if (compilerStrategy == null)
+                    throw new Exception();
 
-            }catch
+            }
+            catch
             {
-                throw new Exception_FactoryFailed("#CF0001 :: Can't get right compiler.");
+               throw new Exception_FactoryFailed("#CF0001 :: Can't get right compiler." + t.tokenType);
             }
 
             return compilerStrategy;

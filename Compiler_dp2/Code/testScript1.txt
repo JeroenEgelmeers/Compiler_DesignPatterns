@@ -1,0 +1,5 @@
+x = 1 + 2;
+while( x != 5 ) {
+write("test");
+x = x + 1;
+}

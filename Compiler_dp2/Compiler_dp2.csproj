@@ -43,20 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Plus.cs" />
-    <Compile Include="Commands\ReturnToVariable.cs" />
-    <Compile Include="Compiler\CompileCondition.cs" />
-    <Compile Include="Compiler\CompileFunction.cs" />
-    <Compile Include="Compiler\CompileIfElseStatement.cs" />
-    <Compile Include="Compiler\CompileIfStatement.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileAssignment.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileConstant.cs" />
+    <Compile Include="Tokenizer\Exceptions\Exception_NoFileFound.cs" />
+    <Compile Include="Virtualmachine\Commands\Plus.cs" />
+    <Compile Include="Virtualmachine\Commands\ReturnToVariable.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileCondition.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileFunction.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileIfElseStatement.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileIfStatement.cs" />
     <Compile Include="Compiler\Compiler.cs" />
-    <Compile Include="Compiler\CompileStatement.cs" />
-    <Compile Include="Commands\Equals.cs" />
-    <Compile Include="Commands\BaseCommand.cs" />
-    <Compile Include="Commands\Write.cs" />
+    <Compile Include="Virtualmachine\Commands\Equals.cs" />
+    <Compile Include="Virtualmachine\Commands\BaseCommand.cs" />
+    <Compile Include="Virtualmachine\Commands\Write.cs" />
     <Compile Include="Compiler\Exceptions\Exception_UnexpectedEnd.cs" />
     <Compile Include="Compiler\CompilerFactory.cs" />
-    <Compile Include="Compiler\CompileWhile.cs" />
+    <Compile Include="Compiler\Compiletypes\CompileWhile.cs" />
     <Compile Include="Compiler\Exceptions\Exception_FactoryFailed.cs" />
     <Compile Include="Nodes\NodeAbstractFunction.cs" />
     <Compile Include="Nodes\NodeConditionalJump.cs" />
@@ -85,6 +87,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Nodes\Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Code\testScript1.txt" />
+    <Content Include="Code\testScript3.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

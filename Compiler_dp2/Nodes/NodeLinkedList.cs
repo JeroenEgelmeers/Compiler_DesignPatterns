@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Compiler_dp2.Nodes.Visitors;
 
 namespace Compiler_dp2.Nodes
 {
@@ -79,6 +80,19 @@ namespace Compiler_dp2.Nodes
                     insertNode.setNext(current);
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            Node current = head;
+            while (current != null)
+            {
+                sb.Append(current.ToString());
+                sb.Append("\r\n");
+                current = current.getNext();
+            }
+            return sb.ToString();
         }
     }
 }

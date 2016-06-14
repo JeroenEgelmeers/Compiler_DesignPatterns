@@ -1,0 +1,13 @@
+x = 1;
+if(x == 1) {
+write("This is true!");
+}else {
+write("This is false!");
+}
+while(x != 5) {
+write("Not yet 5..");
+x = x + 1;
+}
+if (x == 5) {
+write("Now x is 5!");
+}
